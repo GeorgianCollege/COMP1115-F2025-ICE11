@@ -14,11 +14,13 @@ namespace ICE11
 {
     public partial class ToastForm : Form
     {
+        // Empty Constructor
         public ToastForm()
         {
             InitializeComponent();
         }
 
+        // Parameterized Constructor
         public ToastForm(string message, ToastType type)
         {
             InitializeComponent();
