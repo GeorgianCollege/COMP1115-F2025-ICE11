@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Numerics;
+using System.Text.Json;
 
 namespace ICE11
 {
@@ -315,6 +316,23 @@ namespace ICE11
                 ShowToast("Error: " + e.Message, ToastType.Danger);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// This method returns JSON serialization options.
+        /// </summary>
+        /// <returns></returns>
+        public static JsonSerializerOptions GetJsonOptions()
+        {
+            JsonSerializerOptions options = new JsonSerializerOptions();
+
+            options.IncludeFields = true;
+            options.WriteIndented = true;
+            options.PropertyNameCaseInsensitive = true;
+            options.AllowTrailingCommas = true;
+            options.ReadCommentHandling = JsonCommentHandling.Skip;
+
+            return options;
         }
 
 
