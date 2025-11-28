@@ -20,6 +20,21 @@ namespace ICE11
             Info
         }
 
+        // Create a struct (a custom data type) to hold character data
+        public struct CharacterData
+        {
+            public string AGL;
+            public string STR;
+            public string VGR;
+            public string PER;
+            public string INT;
+            public string WIL;
+            public string CharacterName;
+            public string Species;
+            public string Career;
+        }
+
+
     internal static class Program
     {
         public static SplashForm SplashForm;
@@ -122,33 +137,40 @@ namespace ICE11
                     throw new FileFormatException("Invalid Character file");
                 }
 
+                // Declare a CharacterData struct to hold the loaded data
+                CharacterData characterData;
+
                 using StreamReader reader = new StreamReader(path);
 
-                var AGL = reader.ReadLine();
-                var STR = reader.ReadLine();
-                var VGR = reader.ReadLine();
-                var PER = reader.ReadLine();
-                var INT = reader.ReadLine();
-                var WIL = reader.ReadLine();
-                var CharacterName = reader.ReadLine();
-                var Species = reader.ReadLine();
-                var Career = reader.ReadLine();
+                characterData.AGL = reader.ReadLine();
+                characterData.STR = reader.ReadLine();
+                characterData.VGR = reader.ReadLine();
+                characterData.PER = reader.ReadLine();
+                characterData.INT = reader.ReadLine();
+                characterData.WIL = reader.ReadLine();
+                characterData.CharacterName = reader.ReadLine();
+                characterData.Species = reader.ReadLine();
+                characterData.Career = reader.ReadLine();
 
-                if (AGL == null || STR == null || VGR == null || PER == null || INT == null || WIL == null ||
-                    CharacterName == null || Species == null || Career == null)
+                if (   characterData.AGL == null || characterData.STR == null 
+                    || characterData.VGR == null || characterData.PER == null 
+                    || characterData.INT == null || characterData.WIL == null 
+                    || characterData.CharacterName == null 
+                    || characterData.Species == null 
+                    || characterData.Career == null)
                 {
                     throw new FileFormatException("Invalid Character file");
                 }
 
-                Settings.Default.AGL = AGL;
-                Settings.Default.STR = STR;
-                Settings.Default.VGR = VGR;
-                Settings.Default.PER = PER;
-                Settings.Default.INT = INT;
-                Settings.Default.WIL = WIL;
-                Settings.Default.CharacterName = CharacterName;
-                Settings.Default.Species = Species;
-                Settings.Default.Career = Career;
+                Settings.Default.AGL = characterData.AGL;
+                Settings.Default.STR = characterData.STR;
+                Settings.Default.VGR = characterData.VGR;
+                Settings.Default.PER = characterData.PER;
+                Settings.Default.INT = characterData.INT;
+                Settings.Default.WIL = characterData.WIL;
+                Settings.Default.CharacterName = characterData.CharacterName;
+                Settings.Default.Species = characterData.Species;
+                Settings.Default.Career = characterData.Career;
             }
             catch (FileNotFoundException e)
             {
